@@ -23,7 +23,8 @@ def get_day_k(stock_code, stock_name, start_date, end_date):
     # 分钟线指标：date,time,code,open,high,low,close,volume,amount,adjustflag
     # 周月线指标：date,code,open,high,low,close,volume,amount,adjustflag,turn,pctChg
     rs = bs.query_history_k_data_plus(stock_code,
-                                      "date,open,high,low,close,volume",
+                                      # "date,open,high,low,close,volume",
+                                      "date,open,high,low,close,volume, peTTM, pbMRQ",
                                       start_date=start_date, end_date=end_date,
                                       frequency="d", adjustflag="3")
     print('query_history_k_data_plus respond error_code:' + rs.error_code)
@@ -37,7 +38,7 @@ def get_day_k(stock_code, stock_name, start_date, end_date):
     result = pd.DataFrame(data_list, columns=rs.fields)
 
     #### 结果集输出到csv文件 ####
-    result.to_csv("day-k-%s.csv" % stock_name, index=False)
+    result.to_csv("data/baostock-day-k-%s.csv" % stock_name, index=False)
     print(result)
 
     #### 登出系统 ####
@@ -46,13 +47,13 @@ def get_day_k(stock_code, stock_name, start_date, end_date):
 
 
 if __name__ == '__main__':
-    stock_m =  {
-        '东风汽车': 'sh.600006',
-        '包钢股份': 'sh.600010',
-        '沪深300': 'sz.399300',
-        '创业板指': 'sz.399006',
-        '中证500': 'sz.399905'
+    stock_m = {
+        '浦发银行': 'sh.600000',
+        # '东风汽车': 'sh.600006',
+        # '中国国贸': 'sh.600007',
+        # '上海机场': 'sh.600009',
+        # '包钢股份': 'sh.600010'
     }
     now_string = datetime.datetime.now().strftime('%Y-%m-%d')
     for tmp in stock_m:
-        get_day_k(stock_code=stock_m[tmp], stock_name=tmp, start_date='2013-01-01', end_date=now_string)
+        get_day_k(stock_code=stock_m[tmp], stock_name=tmp, start_date='1999-01-01', end_date=now_string)
