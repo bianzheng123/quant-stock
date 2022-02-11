@@ -1,3 +1,4 @@
+# coding=utf-8
 '''
 ====================
 @author: Bian Zheng
@@ -49,10 +50,10 @@ def get_day_k(stock_code, stock_name, start_date, end_date):
 if __name__ == '__main__':
     stock_m = {
         '浦发银行': 'sh.600000',
-        # '东风汽车': 'sh.600006',
-        # '中国国贸': 'sh.600007',
-        # '上海机场': 'sh.600009',
-        # '包钢股份': 'sh.600010'
+        '东风汽车': 'sh.600006',
+        '中国国贸': 'sh.600007',
+        '上海机场': 'sh.600009',
+        '包钢股份': 'sh.600010'
     }
     now_string = datetime.datetime.now().strftime('%Y-%m-%d')
     for tmp in stock_m:
