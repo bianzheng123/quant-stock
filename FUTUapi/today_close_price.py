@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime
 
 
-def get_hk_close_price(stock_code):
+def get_today_close_price(stock_code):
     """
     获取港股最新收盘价
     :param stock_code: 港股代码（如'00700'）
@@ -47,7 +47,7 @@ if __name__ == "__main__":
 
     print("=== 港股收盘价测试 ===")
     for code, name in test_cases:
-        price = get_hk_close_price(code)
+        price = get_today_close_price(code)
         if price:
             print(f"{name}({code}) 最新收盘价：{price} 港币")
         else:
